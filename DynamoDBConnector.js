@@ -119,6 +119,14 @@ class DynamoDBConnector {
 
     return this.dynamoClient.update(params).promise();
   }
+
+  delete(Key) {
+    const params = {
+      TableName: this.TableName,
+      Key,
+    };
+    return this.dynamoClient.delete(params).promise();
+  }
 }
 
 module.exports = DynamoDBConnector;

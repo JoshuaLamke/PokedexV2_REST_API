@@ -9,9 +9,21 @@ provider:
       Action:
         - "dynamodb:*"
       Resource: "arn:aws:dynamodb:us-east-1:245444063873:table/pokedex-db"
+    - Effect: "Allow"
+      Action:
+        - "dynamodb:*"
+      Resource: "arn:aws:dynamodb:us-east-1:245444063873:table/custom-pokemon-db"
+    - Effect: Allow
+      Action:
+        - "s3:*"
+      Resource:
+        - "arn:aws:s3:::custom-pokemon-images/*"
+  apiGateway:
+    binaryMediaTypes:
+      - "*/*"
 functions:
   app:
-    handler: server.server
+    handler: app.server
     events:
       - http:
           path: /
